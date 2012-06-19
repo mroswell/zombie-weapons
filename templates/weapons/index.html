@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zombie Weapons!</title>
+	<link rel="stylesheet" href="{{ STATIC_URL }}base.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}skeleton.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}layout.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}weapons.css" />
+	<script type="text/javascript" src="{{ STATIC_URL }}jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}weapons.js"></script>
+	<script src="{{ STATIC_URL }}slides.min.jquery.js"></script>
+</head>
+<body>	
+	<div class="main container">
+		<div class="header">
+			<h1>omg/zombies</h1>
+			<h2>you should have been prepared..</h2>
+		</div>
+		<h3>Select your household items on the left to get started.</h4>
+		<h4>Need a weapon to fight off the zombie horde, but didn't prepare?  Choose from the household items below to see your options.</h4>
+		<div class="left six columns">	
+			<ul class="householditems">
+				{% for item in householditems %}
+					<li class="householditem" title="{{ item }}"><img src="{{ STATIC_URL }}images/{{ item.image }}"</li>
+				{% endfor %}
+			</ul>			
+		</div>
+		<div class="right six columns">			
+			<div id="slides">								
+				<div class="slides_container"></div>
+			</div>				
+		</div>
+	</div>
+</body>
+</html>
