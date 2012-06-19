@@ -15,3 +15,4 @@ If you're new to AWS, you'll need to do a little prep work:
 Next you'll want to prep your local:
 
 1. Clone this repository to your local.  GitHub has great documentation if you're new to git: https://help.github.com/articles/set-up-git.
+2. Optional: Play with zombie weapons on your local: http://127.0.0.1:8000/weapons/.  Select household items on the left to see your zombie-battling weapon options on the right.  Access the admin console with username admin and password admin to update new options.
