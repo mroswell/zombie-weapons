@@ -1,4 +1,6 @@
-Zombie Weapons is a Django project that has just enough features to exercise the features of Amazon Web Services (AWS), yet is simple enough to be easily understood.
+Zombie Weapons is a Django project that has just enough features to exercise the features of Amazon Web Services (AWS), yet is simple enough to be easily understood.  
+
+I built this project using an Ubuntu-based system, so if you're using something else (such as a Mac or Windows) then some instructions may need to be adjusted.  If you do need to make an adjustment, or if you notice an error, please submit a pull request - I would love to incorporate your feedback.
 
 If you're new to AWS, you'll need to do a little prep work:
 
