@@ -1,6 +1,6 @@
 Zombie Weapons is a Django project that has just enough features to exercise the features of Amazon Web Services (AWS), yet is simple enough to be easily understood.  
 
-I built this project using an Ubuntu-based system, so if you're using something else (such as a Mac or Windows) then some instructions may need to be adjusted.  If you do need to make an adjustment, or if you notice an error, please submit a pull request - I would love to incorporate your feedback.
+I built this project using an Ubuntu-based system, so if you're using something else (such as a Mac or Windows) then some instructions may need to be adjusted.  If you do need to make an adjustment, or if you notice an error, please submit a pull request - I would love to incorporate your feedback.  Feel free to contact me as well if you run into issues: jen@redmonocle.com.
 
 If you're new to AWS, you'll need to do a little prep work:
 
@@ -14,4 +14,4 @@ If you're new to AWS, you'll need to do a little prep work:
 
 Next you'll want to prep your local:
 
-1. Clone this repository to your local.  GitHub has great documentation if you're new to git: https://help.github.com/articles/set-up-git.  Feel free to contact me as well if you run into issues: jen@redmonocle.com.
+1. Clone this repository to your local.  GitHub has great documentation if you're new to git: https://help.github.com/articles/set-up-git.
