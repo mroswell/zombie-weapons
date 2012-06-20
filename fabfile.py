@@ -15,16 +15,11 @@ RSYNC_EXCLUDE = (
     '*.pyc',
     '*.db',
     '*.save',
-    'static/aloha/build.txt',
-    'static/aloha/demo',
-    'static/aloha/build.txt',
-    'static/aloha/package.json',
-    'static/aloha/test',
     'local_settings.py',
     'fabfile.py',
     'bootstrap.py',
     'settings_local.py',
-    'structures/migrations',
+    'weapons/migrations',
     'static/CACHE'
 )
 env.home = '/srv/'
@@ -34,12 +29,13 @@ def production():
     """ use production environment on remote host """
     env.user = 'ec2-user'
     env.environment = 'production'
-    env.hosts = ['ec2-23-22-186-8.compute-1.amazonaws.com']
+    env.hosts = ['ec2-23-22-157-171.compute-1.amazonaws.com']
     _setup_path()
 
 def _setup_path():
     env.root = os.path.join(env.home, 'www', env.environment)
     env.code_root = os.path.join(env.root, env.project)
+    env.settings_path = os.path.join(env.code_root, env.project)
     env.virtualenv_root = os.path.join(env.root, 'env')
     env.apache_conf_root = os.path.join(env.code_root, 'apache')
     env.settings = '%(project)s.settings_%(environment)s' % env    
@@ -64,9 +60,6 @@ def bootstrap():
 
     #install python modules using the pip requirements file
     update_requirements()
-
-    #symlink the admin static files so they work with apache
-    link_admin_static_files()
 
     #put the apache conf file in the appropriate place
     sudo('cp %s /etc/httpd/conf/httpd.conf' % os.path.join(env.apache_conf_root, 'staging.conf'))
@@ -120,7 +113,7 @@ def deploy():
         extra_opts=extra_opts,
     )
 
-    with cd(env.code_root):
+    with cd(env.settings_path):
         #rename the prod settings file so that settings.py will load it
         sudo('mv settings_prod.py settings_local.py')
 
@@ -139,8 +132,10 @@ def update_requirements():
     with cd('/srv/www/production/env/bin/'):
         run('source activate')
 
-    requirements = os.path.join(env.code_root, 'requirements')
-    with cd(requirements):
-        cmd = ['pip install']
-        cmd += ['--requirement %s' % os.path.join(requirements, 'apps.txt')]
-        sudo(' '.join(cmd))        
+    with cd(env.code_root):
+        sudo('pip install --requirement requirements.txt')
+
+def apache_restart():    
+    """ restart Apache on remote host """
+    require('root', provided_by=('staging', 'production'))
+    run('sudo /etc/init.d/httpd restart')        
