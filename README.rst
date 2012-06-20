@@ -17,6 +17,6 @@ Next you'll want to prep your local:
 1. Clone this repository to your local.  GitHub has great documentation if you're new to git: https://help.github.com/articles/set-up-git.
 2. Optional: Play with zombie weapons on your local: http://127.0.0.1:8000/weapons/.  Select household items on the left to see your zombie-battling weapon options on the right.  Access the admin console with username admin and password admin to update new options.
  a. git clone https://github.com/jrullmann/zombie-weapons.git
- b. mkvirtualenv zombie_weapons --no-site-packages (you do know about virtualenv and virtualenvwrapper, right? http://www.doughellmann.com/projects/virtualenvwrapper/)
+ b. mkvirtualenv zombie_weapons --no-site-packages
  c. workon zombie_weapons
  d. pip install -r requirements.txt
