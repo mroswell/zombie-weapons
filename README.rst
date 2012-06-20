@@ -20,3 +20,4 @@ Next you'll want to prep your local:
  b. mkvirtualenv zombie_weapons --no-site-packages
  c. workon zombie_weapons
  d. pip install -r requirements.txt
+3. Install fabric.  This project uses fabric to deploy to AWS.  Fabric is available on the Ubuntu repository, and also through pip and easy_install.  More info at http://fabfile.org.
