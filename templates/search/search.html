@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zombie Weapons!</title>
+	<link rel="stylesheet" href="{{ STATIC_URL }}base.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}skeleton.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}layout.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL }}weapons.css" />
+	<script type="text/javascript" src="{{ STATIC_URL }}jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}weapons.js"></script>
+	<script src="{{ STATIC_URL }}slides.min.jquery.js"></script>
+	<style>
+		.slides_container { display: inherit; }
+	</style>
+	<script>
+		$(function(){
+			$("#slides").slides();
+		});
+	</script>	
+</head>
+<body>	
+	<div class="main container">
+		<div class="header">
+			<h1>omg/zombies</h1>
+			<h2>you should have been prepared..</h2>
+		</div>
+		<h3>Search for a weapon to get started.</h4>
+		<h4>Need a weapon to fight off the zombie horde, but didn't prepare?  Do a search for a weapon to get ideas, or <a href="/weapons">browse</a> based on household items available.</h4>
+		<form method="get" action=".">
+			<div class="left six columns">
+				<input type="text" name="q" value="{{ query }}" id="id_q" />
+				<input type="submit" value="Search">
+			</div>
+			<div class="right six columns">			
+				<div id="slides">								
+					<div class="slides_container">
+						{% for result in page.object_list %}
+							<div>
+								<img class='weapon' src="{{ STATIC_URL }}images/{{ result.object.image }}"</img>
+							</div>
+						{% endfor %}						
+					</div>
+				</div>				
+			</div>		
+		</form>
+	</div>
+</body>
+</html>

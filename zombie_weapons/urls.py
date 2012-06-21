@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'zombie_weapons.views.home', name='home'),
     # url(r'^zombie_weapons/', include('zombie_weapons.foo.urls')),
 
+	(r'^search/', include('haystack.urls')),
     url(r'^weapons/$', 'weapons.views.index'),
     url(r'^weapons/search/$', 'weapons.views.search'),
 
