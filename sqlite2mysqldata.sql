@@ -249,5 +249,3 @@ CREATE INDEX `django_admin_log_fbfc09f1` ON `django_admin_log` (`user_id`);
 CREATE INDEX `django_admin_log_e4470c6e` ON `django_admin_log` (`content_type_id`);
 CREATE INDEX `weapons_weapon_items_c082f932` ON `weapons_weapon_items` (`weapon_id`);
 CREATE INDEX `weapons_weapon_items_53208c73` ON `weapons_weapon_items` (`householditem_id`);
-CREATE USER 'weapons'@'%' IDENTIFIED BY 'zombie_weapons';
-GRANT ALL PRIVILEGES ON *.* TO 'weapons'@'%';
