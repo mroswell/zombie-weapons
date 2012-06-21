@@ -8,6 +8,11 @@ from fabric.decorators import hosts
 
 #manuals steps to perform on a new EC2 instance
 # sudo nano /etc/sudoers change 'require tty' to false so this deploy script can use sudo
+# update the host in this file
+# optional s3 utility that can be helpful for moving data onto/off of the server (ex, backups): 
+#  cd /etc/yum.repos.d/
+#  sudo wget http://s3tools.org/repo/RHEL_6/s3tools.repo
+#  sudo yum install s3cmd
 # use this script's bootstrap function to setup everything else
 
 RSYNC_EXCLUDE = (
@@ -29,7 +34,7 @@ def production():
     """ use production environment on remote host """
     env.user = 'ec2-user'
     env.environment = 'production'
-    env.hosts = ['ec2-23-22-157-171.compute-1.amazonaws.com']
+    env.hosts = ['ec2-23-22-48-253.compute-1.amazonaws.com']
     _setup_path()
 
 def _setup_path():
@@ -37,7 +42,7 @@ def _setup_path():
     env.code_root = os.path.join(env.root, env.project)
     env.settings_path = os.path.join(env.code_root, env.project)
     env.virtualenv_root = os.path.join(env.root, 'env')
-    env.apache_conf_root = os.path.join(env.code_root, 'apache')
+    env.apache_conf_root = os.path.join(env.code_root, env.project, 'apache')
     env.settings = '%(project)s.settings_%(environment)s' % env    
 
 def bootstrap():
@@ -62,7 +67,7 @@ def bootstrap():
     update_requirements()
 
     #put the apache conf file in the appropriate place
-    sudo('cp %s /etc/httpd/conf/httpd.conf' % os.path.join(env.apache_conf_root, 'staging.conf'))
+    sudo('cp %s /etc/httpd/conf/httpd.conf' % os.path.join(env.apache_conf_root, 'prod.conf'))
 
     #start apache
     apache_restart()    
