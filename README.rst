@@ -10,7 +10,8 @@ If you're new to AWS, you'll need to do a little prep work:
 4. Launch another AWS instance, choose the same availability zone as your first instance, associate it with the same Key Pair, and name it 'db'.  This second instance is not included in the free trial, so you'll be charged for its usage.  Leaving it on for an entire month will run you about $15.  However, you can mitigate this by:
  a. Stoping the database server when you're not using this project, since AWS only charges for the time the instance is running.
  b. Using the web server as your database server.  This project and its instructions assumes a seperate web and database server, but you can certainly combine the two.
-5. Ensure that you can SSH to both instances.
+5. Edit the security group containing the two instances to allow inbound SSH, HTTP, and MYSQL connections 
+6. Ensure that you can SSH to both instances.
 
 Next you'll want to prep your local:
 
