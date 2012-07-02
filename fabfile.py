@@ -28,19 +28,19 @@ RSYNC_EXCLUDE = (
     'static/CACHE'
 )
 env.home = '/srv/'
-env.project = 'zombie_weapons'
+env.project = 'zombie-weapons'
 
 def production():
     """ use production environment on remote host """
     env.user = 'ec2-user'
     env.environment = 'production'
-    env.hosts = ['ec2-23-22-48-253.compute-1.amazonaws.com']
+    env.hosts = ['ec2-23-22-113-195.compute-1.amazonaws.com']
     _setup_path()
 
 def _setup_path():
     env.root = os.path.join(env.home, 'www', env.environment)
     env.code_root = os.path.join(env.root, env.project)
-    env.settings_path = os.path.join(env.code_root, env.project)
+    env.settings_path = os.path.join(env.code_root, 'zombie_weapons')
     env.virtualenv_root = os.path.join(env.root, 'env')
     env.apache_conf_root = os.path.join(env.code_root, env.project, 'apache')
     env.settings = '%(project)s.settings_%(environment)s' % env    
@@ -123,11 +123,11 @@ def deploy():
         sudo('mv settings_prod.py settings_local.py')
 
 def link_admin_static_files():        
-	""" the admin static files 'just work' when using the django web server, but in production the site looks under the static files location.  here we need to sym link the location """
-	require('code_root', provided_by=('production'))
+    """ the admin static files 'just work' when using the django web server, but in production the site looks under the static files location.  here we need to sym link the location """
+    require('code_root', provided_by=('production'))
 
-	with cd(env.code_root):	
-		sudo('ln -s ../../env/lib/python2.6/site-packages/django/contrib/admin/static/ static/admin')	
+    with cd(env.code_root): 
+        sudo('ln -s ../../env/lib/python2.6/site-packages/django/contrib/admin/static/ static/admin')   
 
 def update_requirements():
     """ update external dependencies """
