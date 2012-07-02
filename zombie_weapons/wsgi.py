@@ -19,7 +19,7 @@ import sys
 try:
     	import zombie_weapons
 except ImportError, e:
-        sys.path.append('/srv/www/production/zombie_weapons')
+        sys.path.append('/srv/www/production/zombie-weapons')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "zombie_weapons.settings")
 
