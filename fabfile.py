@@ -42,7 +42,7 @@ def _setup_path():
     env.code_root = os.path.join(env.root, env.project)
     env.settings_path = os.path.join(env.code_root, 'zombie_weapons')
     env.virtualenv_root = os.path.join(env.root, 'env')
-    env.apache_conf_root = os.path.join(env.code_root, env.project, 'apache')
+    env.apache_conf_root = os.path.join(env.settings_path, 'apache')
     env.settings = '%(project)s.settings_%(environment)s' % env    
 
 def bootstrap():
