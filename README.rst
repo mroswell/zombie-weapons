@@ -24,6 +24,7 @@ Next you'll want to prep your local:
 3. Install fabric.  This project uses fabric to deploy to AWS.  Fabric is available on the Ubuntu repository, and also through pip and easy_install.  More info at http://fabfile.org.
 
 Now let's bootstrap the web server:
+
 1. Open this repository's fabfile.py in your favorite editor
 2. At the topic of the fabfile are the manual instructions required to bootstrap the web server.  Follow the instructions to disable 'require tty' in the sudo files.  This allows the bootstrap script to run sudo commands.
 3. Edit the production function in the fabfile to set the env.hosts variable to your web server's dns name.  You can find this by selecting the EC2 instance in the AWS management webpage.
