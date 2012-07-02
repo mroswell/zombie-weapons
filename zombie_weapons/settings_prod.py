@@ -11,7 +11,7 @@ DATABASES = {
     }
 }
 
-current_path = '/srv/www/production/zombie_weapons'
+current_path = '/srv/www/production/zombie-weapons'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
