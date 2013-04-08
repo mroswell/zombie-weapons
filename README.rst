@@ -15,17 +15,16 @@ Setup the AWS instances:
 
 Prep your local:
 
-1. Clone this repository to your local:
- a. git clone https://github.com/jrullmann/zombie-weapons.git
- b. mkvirtualenv zombie_weapons --no-site-packages
- c. workon zombie_weapons
- d. pip install -r requirements.txt
-
-2. Install fabric.  This project uses fabric to deploy to AWS.  Fabric is available on the Ubuntu repository, and also through pip and easy_install.  More info at http://fabfile.org.
- a. pip install fabric
+1. git clone https://github.com/jrullmann/zombie-weapons.git
+2. mkvirtualenv zombie_weapons --no-site-packages
+3. workon zombie_weapons
+4. pip install -r requirements.txt
+5. pip install fabric
 
 Bootstrap the database server:
+
 1. Follow the 'manually bootstrap database server' steps in this repositories fabfile.py.
 
 Manully bootstrap web server:
+
 1. Follow the 'manully bootstrap web server' steps in this repositories fabfile.py.
