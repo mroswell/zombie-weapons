@@ -23,11 +23,6 @@ from fabric.decorators import hosts
 # use this script's bootstrap function to setup everything else
 # if the database hasn't been synced yet, use this script's sync_db function
 
-#optional s3 utility that can be helpful for moving data onto/off of the server (ex, backups): 
-#  cd /etc/yum.repos.d/
-#  sudo wget http://s3tools.org/repo/RHEL_6/s3tools.repo
-#  sudo yum install s3cmd
-
 RSYNC_EXCLUDE = (
     '.git',
     '*.pyc',
