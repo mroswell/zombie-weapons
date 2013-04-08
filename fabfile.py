@@ -16,8 +16,8 @@ from fabric.decorators import hosts
 # wget https://raw.github.com/jrullmann/zombie-weapons/master/sqlite2mysqldata.sql
 # mysql -u root < sqlite2mysqldata.sql
 
-#manully bootstrap web server
-# ssh into instance, run sudo nano /etc/sudoers, change 'require tty' to false so this deploy script can use sudo
+#bootstrap web server
+# ssh into instance, run sudo nano /etc/sudoers, comment out 'require tty' so this deploy script can use sudo
 # update env.hosts in this file
 # update zombie_weapons/settings_prod.py with db name
 # use this script's bootstrap function to setup everything else
