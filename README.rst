@@ -23,8 +23,8 @@ Prep your local:
 
 Bootstrap the database server:
 
-1. Follow the 'manually bootstrap database server' steps in this repositories fabfile.py.
+1. Follow the 'manually bootstrap database server' steps in this repository's fabfile.py.
 
 Manully bootstrap web server:
 
-1. Follow the 'manully bootstrap web server' steps in this repositories fabfile.py.
+1. Follow the 'manully bootstrap web server' steps in this repository's fabfile.py.
