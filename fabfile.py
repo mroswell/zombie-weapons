@@ -6,14 +6,27 @@ from fabric.contrib import files, console
 from fabric import utils
 from fabric.decorators import hosts
 
-#manuals steps to perform on a new EC2 instance
-# sudo nano /etc/sudoers change 'require tty' to false so this deploy script can use sudo
-# update the host in this file
-# optional s3 utility that can be helpful for moving data onto/off of the server (ex, backups): 
+#manually bootstrap database server
+#ssh into instance and run the following commands:
+# sudo yum -y install mysql-server
+# sudo /etc/init.d/mysqld start
+# mysql -u root -e 'CREATE DATABASE zombie_weapons CHARACTER SET utf8;'
+# mysql -u root -e "CREATE USER 'weapons'@'%' IDENTIFIED BY 'zombie_weapons';"
+# mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'weapons'@'%'"
+# wget https://raw.github.com/jrullmann/zombie-weapons/master/sqlite2mysqldata.sql
+# mysql -u root < sqlite2mysqldata.sql
+
+#manully bootstrap web server
+# ssh into instance, run sudo nano /etc/sudoers, change 'require tty' to false so this deploy script can use sudo
+# update env.hosts in this file
+# update zombie_weapons/settings_prod.py with db name
+# use this script's bootstrap function to setup everything else
+# if the database hasn't been synced yet, use this script's sync_db function
+
+#optional s3 utility that can be helpful for moving data onto/off of the server (ex, backups): 
 #  cd /etc/yum.repos.d/
 #  sudo wget http://s3tools.org/repo/RHEL_6/s3tools.repo
 #  sudo yum install s3cmd
-# use this script's bootstrap function to setup everything else
 
 RSYNC_EXCLUDE = (
     '.git',
@@ -34,7 +47,7 @@ def production():
     """ use production environment on remote host """
     env.user = 'ec2-user'
     env.environment = 'production'
-    env.hosts = ['ec2-23-22-113-195.compute-1.amazonaws.com']
+    env.hosts = ['ec2-54-235-14-85.compute-1.amazonaws.com']
     _setup_path()
 
 def _setup_path():
@@ -79,6 +92,7 @@ def install_base():
     sudo("yum install -y mod_wsgi")
     sudo("yum install -y python-setuptools")
     sudo("easy_install pip")
+    sudo('easy_install -U distribute')
     sudo("pip install virtualenv")
     sudo('yum -y install gcc')
     sudo('yum -y install python26-devel')
@@ -96,11 +110,6 @@ def deploy():
     """ push code to ec2.  we're using rsync only files that we're changed will be pushed """
     require('root', provided_by=('production'))
     require('code_root', provided_by=('production'))
-
-    #double-check before deploying to production environment
-    if env.environment == 'production':
-        if not console.confirm('Are you sure you want to deploy production?', default=False):
-            utils.abort('Production deployment aborted.')
 
     # default rsync options:
     # -pthrvz
@@ -142,5 +151,15 @@ def update_requirements():
 
 def apache_restart():    
     """ restart Apache on remote host """
-    require('root', provided_by=('staging', 'production'))
+    require('root', provided_by=('production'))
     run('sudo /etc/init.d/httpd restart')        
+
+def sync_db():
+    """ Runs the django syncdb command from the web server """
+    require('root', provided_by=('production'))
+
+    with cd('/srv/www/production/env/bin/'):
+        run('source activate')
+
+    with cd(env.code_root):
+        run('python manage.py syncdb')

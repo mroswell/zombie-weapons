@@ -6,7 +6,7 @@ DATABASES = {
         'NAME': 'zombie_weapons',                      # Or path to database file if using sqlite3.
         'USER': 'weapons',                      # Not used with sqlite3.
         'PASSWORD': 'zombie_weapons',                  # Not used with sqlite3.
-        'HOST': 'ec2-72-44-61-78.compute-1.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'ec2-54-224-4-59.compute-1.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
