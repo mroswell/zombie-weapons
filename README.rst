@@ -26,4 +26,4 @@ Manully bootstrap the web server:
 
 1. Follow the 'manully bootstrap web server' steps in this repository's fabfile.py.
 
-Verify the site is running in your browser: http://<web server dns name/weapons/
+Verify the site is running in your browser: http://<web server dns name>/weapons/
