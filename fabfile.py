@@ -18,8 +18,8 @@ from fabric.decorators import hosts
 
 #bootstrap web server
 # ssh into instance, run sudo nano /etc/sudoers, comment out 'require tty' so this deploy script can use sudo
-# update env.hosts in this file
-# update zombie_weapons/settings_prod.py with db name
+# update env.hosts in this file with the hostname for the web server
+# update zombie_weapons/settings_prod.py with the database server hostname
 # use this script's bootstrap function to setup everything else
 # if the database hasn't been synced yet, use this script's sync_db function
 
