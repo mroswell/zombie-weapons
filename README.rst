@@ -5,7 +5,7 @@ I built this project using an Ubuntu-based system, so if you're using something 
 Setup the AWS instances:
 
 1. Create an AWS account, if you don't already have one.  You'll want to take a look at the details of the free usage tier at http://aws.amazon.com/free/.
-2. Create a security group with full access to the SSH, HTTP, and MYSQL ports
+2. Create a security group with full access to the SSH, HTTP, and MYSQL ports (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#creating-security-group)
 3. Launch two EC2 instances.  
  a. Choose the 64-bit 'Amazon Linux AMI' that is available to the free trial - it will have a star next to it.  
  b. Be sure to create a Key Pair so that you can connect to your instance once it is launched.  You can find detailed instructions here: http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGuide/
